@@ -68,7 +68,7 @@
                 type: [String, Number, Array],
                 default: ''
             },
-            // ä½¿ç”¨æ—¶ï¼Œä¹Ÿå¾—è®¾ç½® value æ‰è¡Œ
+            // Ê¹ÓÃÊ±£¬Ò²µÃÉèÖÃ value ²ÅĞĞ
             label: {
                 type: [String, Number, Array],
                 default: ''
@@ -580,7 +580,7 @@
                                     this.query = child.label === undefined ? child.searchLabel : child.label;
                                 }
                             });
-                            // å¦‚æœåˆ é™¤äº†æœç´¢è¯ï¼Œä¸‹æ‹‰åˆ—è¡¨ä¹Ÿæ¸…ç©ºäº†ï¼Œæ‰€ä»¥å¼ºåˆ¶è°ƒç”¨ä¸€æ¬¡remoteMethod
+                            // Èç¹ûÉ¾³ıÁËËÑË÷´Ê£¬ÏÂÀ­ÁĞ±íÒ²Çå¿ÕÁË£¬ËùÒÔÇ¿ÖÆµ÷ÓÃÒ»´ÎremoteMethod
                             if (this.remote && this.query !== this.lastQuery) {
                                 this.$nextTick(() => {
                                     this.query = this.lastQuery;
@@ -647,7 +647,7 @@
                     this.updateOptions(true);
                 });
             },
-            // å¤„ç† remote åˆå§‹å€¼
+            // ´¦Àí remote ³õÊ¼Öµ
             updateLabel () {
                 if (this.remote) {
                     if (!this.multiple && this.model !== '') {
@@ -671,7 +671,7 @@
         },
         mounted () {
             this.modelToQuery();
-            // å¤„ç† remote åˆå§‹å€¼
+            // ´¦Àí remote ³õÊ¼Öµ
             this.updateLabel();
             this.$nextTick(() => {
                 this.broadcastQuery('');
@@ -698,7 +698,7 @@
                         }
 
                         if (this.filterable) {
-                            // remote&filterable&multipleæ—¶ï¼Œä¸€æ¬¡ç‚¹å¤šé¡¹ï¼Œä¸åº”è¯¥è®¾ç½®trueï¼Œå› ä¸ºæ— æ³•ç½®ä¸ºfalseï¼Œä¸‹æ¬¡çš„æœç´¢ä¼šå¤±æ•ˆ
+                            // remote&filterable&multipleÊ±£¬Ò»´Îµã¶àÏî£¬²»Ó¦¸ÃÉèÖÃtrue£¬ÒòÎªÎŞ·¨ÖÃÎªfalse£¬ÏÂ´ÎµÄËÑË÷»áÊ§Ğ§
                             if (this.query !== '') this.selectToChangeQuery = true;
                             this.query = '';
                             this.$refs.input.focus();
@@ -722,15 +722,8 @@
             document.removeEventListener('keydown', this.handleKeydown);
         },
         watch: {
-            value (val) {
-                this.model = val;
+            model (val) {
                 if (val === '') this.query = '';
-            },
-            label (val) {
-                this.currentLabel = val;
-                this.updateLabel();
-            },
-            model () {
                 this.$emit('input', this.model);
                 this.modelToQuery();
                 if (this.multiple) {
@@ -761,7 +754,7 @@
                             this.findChild(child => {
                                 child.selected = this.multiple ? this.model.indexOf(child.value) > -1 : this.model === child.value;
                             });
-                            // remoteä¸‹ï¼Œè®¾ç½®äº†é»˜è®¤å€¼ï¼Œç¬¬ä¸€æ¬¡æ‰“å¼€æ—¶ï¼Œæœç´¢ä¸€æ¬¡
+                            // remoteÏÂ£¬ÉèÖÃÁËÄ¬ÈÏÖµ£¬µÚÒ»´Î´ò¿ªÊ±£¬ËÑË÷Ò»´Î
                             const options = this.$slots.default || [];
                             if (this.query !== '' && !options.length) {
                                 this.remoteMethod(this.query);
